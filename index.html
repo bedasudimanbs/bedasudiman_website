@@ -1,629 +1,624 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<!-- Deployment fix trigger -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portofolio resmi Beda Sudiman - Seniman Indonesia. Karya lukisan, digital art, dan ekspresi seni kontemporer.">
-    <meta name="keywords" content="Beda Sudiman, seniman Indonesia, lukisan, portfolio seni, digital art, Bekasi, Yogyakarta">
-    <meta name="author" content="Beda Sudiman">
-    <meta property="og:title" content="Beda Sudiman | Portfolio Seniman">
-    <meta property="og:description" content="Jelajahi karya seni Beda Sudiman: lukisan cat minyak, digital art, dan ekspresi kreatif dari Indonesia.">
-    <meta property="og:type" content="website">
-    <title>Beda Sudiman | Portfolio Seniman</title>
+    <meta name="description" content="Portofolio Beda Sudiman - Seniman Visual Indonesia">
+    <title>Beda Sudiman | Visual Artist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* ===== COLOR VARIABLES (Putih + Cream) ===== */
         :root {
-            --bg-primary: #fef9f3; /* Light wood tone */
-            --bg-secondary: #f5ebe0;
-            --text-primary: #2c1810;
-            --text-secondary: #5d4037;
-            --accent: #8d6e63;
-            --card-bg: #fff;
-            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f5f0;
+            --bg-cream: #f5ebe0;
+            --text-primary: #1a1a1a;
+            --text-secondary: #5a5a5a;
+            --accent: #c9a962;
+            --accent-dark: #a88b4a;
+            --border: #e8e0d5;
+            --shadow: 0 4px 20px rgba(0,0,0,0.06);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            background-image: url("image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e8d5c4' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zm0-30V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 400; }
+
+        /* ===== INTRO PAGE (Samantha Keely Smith Style) ===== */
+        #intro {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: linear-gradient(rgba(10,10,10,0.5), rgba(10,10,10,0.5)), 
+                        url('images/hero-painting.jpg') center/cover no-repeat;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 2000; transition: opacity 0.7s ease, visibility 0.7s;
+        }
+        #intro.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        .intro-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem; font-weight: 300; letter-spacing: 18px;
+            color: #fff; margin-bottom: 1rem; text-transform: uppercase;
+            animation: fadeInUp 1.3s ease; text-align: center; padding: 0 20px;
+        }
+        .intro-title {
+            font-size: 1.1rem; font-weight: 300; letter-spacing: 7px;
+            color: rgba(255,255,255,0.85); margin-bottom: 3rem;
+            animation: fadeInUp 1.8s ease;
+        }
+        .enter-btn {
+            padding: 15px 50px; background: transparent; border: 1.5px solid #fff;
+            color: #fff; font-size: 0.85rem; letter-spacing: 3.5px;
+            text-transform: uppercase; cursor: pointer; transition: all 0.4s;
+            animation: fadeInUp 2.3s ease; font-family: 'Inter', sans-serif;
+        }
+        .enter-btn:hover { background: #fff; color: #1a1a1a; transform: translateY(-3px); }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Header */
-        header {
-            background: var(--card-bg);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 1rem 0;
+        .loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-primary); z-index: 1999;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.4s;
         }
+        .loader.show { opacity: 1; visibility: visible; }
+        .loader::after {
+            content: ''; width: 40px; height: 40px;
+            border: 2px solid var(--border); border-top-color: var(--accent);
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* ===== NAVIGATION (Jane Hindmarch Style) ===== */
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000; padding: 1rem 0;
         }
-
+        .nav-container {
+            max-width: 1400px; margin: 0 auto; padding: 0 2.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            letter-spacing: 3px; color: var(--text-primary);
+            text-decoration: none; cursor: pointer;
+        }
+        .nav-menu { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-menu a {
+            text-decoration: none; color: var(--text-primary);
+            font-size: 0.8rem; letter-spacing: 1.8px; text-transform: uppercase;
+            cursor: pointer; transition: color 0.3s;
+        }
+        .nav-menu a:hover { color: var(--accent); }
+
+        /* ===== DROPDOWN GALLERY (FIXED - BISA DIKLIK) ===== */
+        .dropdown { position: relative; }
+        .dropdown-trigger {
+            display: flex; align-items: center; gap: 4px; cursor: pointer;
+        }
+        .dropdown-trigger::after {
+            content: '▾'; font-size: 0.6rem; transition: transform 0.3s;
+        }
+        .dropdown.open .dropdown-trigger::after { transform: rotate(180deg); }
+        
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: #fff; min-width: 220px;
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+            border-radius: 4px; z-index: 1001;
+            opacity: 0; visibility: hidden;
+            transition: all 0.25s ease; padding: 8px 0;
+        }
+        /* Area transparan agar dropdown tidak hilang saat mouse pindah */
+        .dropdown-menu::before {
+            content: ''; position: absolute; top: -10px; left: 0;
+            width: 100%; height: 10px; background: transparent;
+        }
+        .dropdown.open .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-menu a {
+            display: block; padding: 0.9rem 1.5rem;
+            font-size: 0.78rem; letter-spacing: 1.2px;
+            text-transform: uppercase; color: var(--text-primary);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover {
+            background: var(--bg-cream); color: var(--accent-dark);
+            padding-left: 1.8rem;
         }
 
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 0.9rem;
+        /* Mobile dropdown */
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 1.5rem; flex-direction: column; gap: 1rem; }
+            .nav-menu { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            .dropdown-menu {
+                position: static; transform: none; opacity: 1; visibility: visible;
+                display: none; box-shadow: none; border: none;
+                background: var(--bg-secondary); margin-top: 0.5rem; padding: 0;
+            }
+            .dropdown-menu::before { display: none; }
+            .dropdown.mobile-open .dropdown-menu { display: block; }
+            .dropdown-menu a { padding: 0.8rem 1.5rem; border-bottom: 1px solid var(--border); }
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 8rem 2.5rem 4rem; max-width: 1400px; margin: 0 auto;
+            display: none;
         }
+        section.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
+        /* Home */
+        #home { text-align: center; padding-top: 10rem; }
+        .hero-title { font-size: 3.5rem; margin-bottom: 0.8rem; letter-spacing: 5px; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 3rem; font-weight: 300; }
+        .hero-art {
+            max-width: 950px; margin: 3rem auto;
+            background: var(--bg-cream); border-radius: 4px;
+            overflow: hidden; box-shadow: var(--shadow);
         }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent);
+        .hero-art img { width: 100%; height: auto; display: block; }
+        .hero-art-placeholder {
+            width: 100%; height: 550px; display: flex;
+            align-items: center; justify-content: center;
+            color: var(--text-secondary); font-size: 1rem;
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-secondary) 100%);
         }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 5rem 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         .hero-quote {
-            font-style: italic;
-            color: var(--accent);
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            padding: 1rem 2rem;
-            border-left: 3px solid var(--accent);
-            background: rgba(141, 110, 99, 0.05);
-            border-radius: 0 8px 8px 0;
+            max-width: 750px; margin: 3rem auto; color: var(--text-secondary);
+            line-height: 1.9; font-style: italic; font-size: 1.05rem;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 12px 32px;
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 12px rgba(141, 110, 99, 0.3);
+        /* Gallery */
+        #gallery-category {
+            text-align: center; color: var(--text-secondary);
+            margin-bottom: 2.5rem; font-size: 1.1rem;
         }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(141, 110, 99, 0.4);
-        }
-
-        /* About Section */
-        .section {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-            margin: 12px auto 0;
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .about-info {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .info-icon {
-            width: 24px;
-            height: 24px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.8rem;
-            flex-shrink: 0;
-        }
-
-        /* Gallery Section */
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 2.2rem; margin-top: 2rem;
         }
-
         .gallery-item {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-            cursor: pointer;
+            background: #fff; border: 1px solid var(--border);
+            border-radius: 4px; overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
+        .gallery-item:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
         .gallery-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #d7ccc8 0%, #a98274 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
+            width: 100%; height: 390px; background: var(--bg-cream);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary); font-size: 0.95rem;
         }
-
-        .gallery-image::before {
-            content: "🎨";
-            font-size: 3rem;
-            opacity: 0.3;
+        .gallery-image img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-info { padding: 1.5rem 1.3rem; text-align: center; }
+        .category-tag {
+            display: inline-block; font-size: 0.73rem; background: var(--accent);
+            color: #fff; padding: 4px 12px; border-radius: 14px;
+            margin-bottom: 0.7rem; letter-spacing: 0.6px; font-weight: 500;
         }
+        .gallery-title { font-size: 1.28rem; margin-bottom: 0.45rem; }
+        .gallery-meta { color: var(--text-secondary); font-size: 0.9rem; }
 
-        .gallery-info {
-            padding: 1.2rem;
-        }
-
-        .gallery-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .gallery-meta {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--bg-secondary);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-info p {
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--card-bg);
-            border-radius: 30px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            transition: background 0.3s;
-            box-shadow: var(--shadow);
-        }
-
-        .social-link:hover {
-            background: var(--accent);
-            color: white;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px 16px;
-            margin-bottom: 1rem;
-            border: 2px solid #e0d6c9;
-            border-radius: 8px;
-            font-size: 1rem;
-            background: var(--card-bg);
-            transition: border-color 0.3s;
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .contact-form textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px 32px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #6d4c41;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-primary);
-            color: white;
+        /* Contact (Jane Hindmarch Style) */
+        .contact-wrapper { max-width: 780px; margin: 0 auto; text-align: center; }
+        .section-title {
+            font-size: 2.4rem; margin-bottom: 0.9rem; letter-spacing: 3px;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
         }
+        .contact-intro {
+            color: var(--text-secondary); margin-bottom: 3rem;
+            font-size: 1.08rem; line-height: 1.8;
+        }
+        .contact-form {
+            background: var(--bg-secondary); padding: 3rem 2.5rem;
+            border-radius: 6px; text-align: left;
+        }
+        .form-row { margin-bottom: 1.5rem; }
+        .form-row label {
+            display: block; margin-bottom: 0.6rem; font-size: 0.83rem;
+            letter-spacing: 1.2px; text-transform: uppercase;
+            color: var(--text-secondary); font-weight: 500;
+        }
+        .form-row input, .form-row textarea {
+            width: 100%; padding: 1rem 1.2rem;
+            border: 1px solid var(--border); background: #fff;
+            font-family: 'Inter', sans-serif; font-size: 0.96rem;
+            transition: border-color 0.3s; border-radius: 3px;
+        }
+        .form-row input:focus, .form-row textarea:focus {
+            outline: none; border-color: var(--accent);
+        }
+        .form-row textarea { min-height: 150px; resize: vertical; }
+        .submit-btn {
+            background: var(--accent); color: #fff; border: none;
+            padding: 1rem 3rem; font-size: 0.83rem;
+            letter-spacing: 2.2px; text-transform: uppercase;
+            cursor: pointer; transition: background 0.3s;
+            border-radius: 3px; font-weight: 500; margin-top: 0.5rem;
+        }
+        .submit-btn:hover { background: var(--accent-dark); }
+        .contact-details {
+            margin-top: 3rem; padding-top: 2.8rem;
+            border-top: 1px solid var(--border);
+        }
+        .contact-item { margin: 1rem 0; color: var(--text-secondary); font-size: 0.97rem; }
+        .contact-item strong { color: var(--text-primary); }
 
-        footer a {
-            color: #d7ccc8;
-            text-decoration: none;
+        /* Other sections */
+        .section-header { text-align: center; margin-bottom: 3.5rem; }
+        .content-box { max-width: 820px; margin: 0 auto; text-align: center; }
+        .artist-photo {
+            background: var(--bg-secondary); height: 400px;
+            margin-bottom: 2.2rem; border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary);
         }
-
-        footer a:hover {
-            color: white;
+        .bio-text { color: var(--text-secondary); line-height: 1.95; margin-bottom: 1.4rem; }
+        .testimonial {
+            background: var(--bg-secondary); padding: 2.8rem 2.2rem;
+            margin-bottom: 2rem; border-radius: 6px;
         }
+        .quote-text { font-style: italic; font-size: 1.08rem; margin-bottom: 1.4rem; line-height: 1.85; }
+        .quote-author { font-weight: 600; color: var(--accent-dark); }
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .section {
-                padding: 3rem 0;
-            }
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
+            .intro-name { font-size: 2.5rem; letter-spacing: 8px; }
+            .intro-title { font-size: 0.95rem; letter-spacing: 4px; }
+            .enter-btn { padding: 13px 40px; font-size: 0.78rem; }
+            .hero-title { font-size: 2.1rem; }
+            .section-title { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-image { height: 330px; }
+            section { padding: 6rem 1.5rem 3.5rem; }
+            .contact-form { padding: 2.2rem 1.5rem; }
+            .hero-art-placeholder { height: 400px; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <span class="logo-icon">BS</span>
-                    Beda Sudiman
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">Beranda</a></li>
-                    <li><a href="#about">Tentang</a></li>
-                    <li><a href="#gallery">Karya</a></li>
-                    <li><a href="#contact">Kontak</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Beda Sudiman</h1>
-            <p class="subtitle">Seniman Visual • Digital Creator • Bekasi, Indonesia</p>
-            <p class="hero-quote">"Segala bentuk karya yang terealisir olehku merupakan bayangan dari diriku yang melekat pada dunia tampak!"</p>
-            <a href="#gallery" class="cta-button">Jelajahi Karya</a>
+<!-- ===== INTRO PAGE ===== -->
+<div id="intro">
+    <h1 class="intro-name">Beda Sudiman</h1>
+    <p class="intro-title">Visual Artist & Painter</p>
+    <button class="enter-btn" onclick="enterWebsite()">Enter</button>
+</div>
+<div class="loader" id="loader"></div>
+
+<!-- ===== MAIN WEBSITE (Hidden Until Enter Clicked) ===== -->
+<div id="mainSite" style="display:none;">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a class="logo" onclick="showSection('home')">BEDA SUDIMAN</a>
+            <ul class="nav-menu">
+                <li><a onclick="showSection('home')">Home</a></li>
+                
+                <!-- Dropdown Gallery (FIXED) -->
+                <li class="dropdown" id="galleryDropdown">
+                    <span class="dropdown-trigger" onclick="toggleDropdown(event)">Gallery</span>
+                    <div class="dropdown-menu">
+                        <a onclick="showGallery('available'); closeDropdown()">Available Work</a>
+                        <a onclick="showGallery('painting'); closeDropdown()">Painting</a>
+                        <a onclick="showGallery('drawing'); closeDropdown()">Drawing</a>
+                        <a onclick="showGallery('exhibition'); closeDropdown()">Exhibitions</a>
+                    </div>
+                </li>
+                
+                <li><a onclick="showSection('portfolio')">Portfolio</a></li>
+                <li><a onclick="showSection('testimonials')">Testimonials</a></li>
+                <li><a onclick="showSection('shop')">Art Shop</a></li>
+                <li><a onclick="showSection('about')">About</a></li>
+                <li><a onclick="showSection('contact')">Contact</a></li>
+            </ul>
         </div>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="active">
+        <h1 class="hero-title">Beda Sudiman</h1>
+        <p class="hero-subtitle">Visual Artist & Painter from Indonesia</p>
+        
+        <div class="hero-art">
+            <div class="hero-art-placeholder">
+                <!-- Ganti dengan: <img src="images/hero-painting.jpg" alt="Featured Work"> -->
+                <span>🎨 Featured Painting - Ganti dengan karya terbaik Bapak</span>
+            </div>
+        </div>
+        
+        <p class="hero-quote">
+            "Segala bentuk karya yang terealisir olehku merupakan bayangan dari diriku yang melekat pada dunia tampak. 
+            Melalui lukisan, patung, dan musik, saya mengekspresikan jiwa yang terhubung dengan alam dan spiritualitas."
+        </p>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">Tentang Saya</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Selamat datang di ruang ekspresi seni saya. Saya adalah <strong>Beda Sudiman</strong>, seorang seniman yang percaya bahwa alam dan spiritualitas adalah sumber inspirasi tak terbatas.</p>
-                    <p>Karya-karya saya menggabungkan teknik lukis tradisional dengan eksplorasi digital, menciptakan dialog visual antara dunia nyata dan imajinasi.</p>
-                    <p>Lulusan <strong>Sekolah Seni Rupa Indonesia, Yogyakarta</strong>, saya terus berkarya dari Bekasi, menghadirkan narasi visual yang menyentuh jiwa.</p>
+    <!-- GALLERY SECTION -->
+    <section id="gallery">
+        <h2 class="section-title" style="text-align:center;margin-bottom:0.5rem">Gallery</h2>
+        <p id="gallery-category">All Works</p>
+        <div class="gallery-grid" id="galleryContent"></div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio">
+        <div class="section-header">
+            <h2 class="section-title">Portfolio</h2>
+            <p style="color:var(--text-secondary)">Kumpulan karya pilihan dari berbagai periode</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-image"><span>Portfolio Work 1</span></div>
+                <div class="gallery-info">
+                    <div class="gallery-title">Tree of Life Series</div>
+                    <div class="gallery-meta">Oil on Canvas • 2024</div>
                 </div>
-                <div class="about-info">
-                    <div class="info-item">
-                        <span class="info-icon">📍</span>
-                        <span>Bekasi, Indonesia</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-icon">🎓</span>
-                        <span>Sekolah Seni Rupa Indonesia, Yogyakarta</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-icon">🎨</span>
-                        <span>Media: Oil on Canvas, Digital Art, Mixed Media</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-icon">🌿</span>
-                        <span>Tema: Alam, Spiritualitas, Kehidupan</span>
-                    </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image"><span>Portfolio Work 2</span></div>
+                <div class="gallery-info">
+                    <div class="gallery-title">Dancing Trees</div>
+                    <div class="gallery-meta">Acrylic on Canvas • 2025</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="section">
-        <div class="container">
-            <h2 class="section-title">Karya Pilihan</h2>
-            <div class="gallery-grid">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <!-- Ganti dengan URL gambar karya asli -->
-                        <!-- <img src="karya-1.jpg" alt="The Growing on the Riverbank"> -->
-                    </div>
-                    <div class="gallery-info">
-                        <div class="gallery-title">The Growing on the Riverbank</div>
-                        <div class="gallery-meta">Oil on Canvas • 100cm × 80cm • 2026</div>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <!-- <img src="karya-2.jpg" alt="Dancing Trees of Sumba"> -->
-                    </div>
-                    <div class="gallery-info">
-                        <div class="gallery-title">Dancing Trees of Sumba</div>
-                        <div class="gallery-meta">Digital Art • Series: Tree of Life • 2026</div>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <!-- <img src="karya-3.jpg" alt="Hutan Belantara"> -->
-                    </div>
-                    <div class="gallery-info">
-                        <div class="gallery-title">Medan Hutan Belantara</div>
-                        <div class="gallery-meta">Mixed Media • Ekspresi Kontemporer • 2025</div>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <!-- <img src="karya-4.jpg" alt="Alam dan Spiritualitas"> -->
-                    </div>
-                    <div class="gallery-info">
-                        <div class="gallery-title">Tuhan Melalui Alam</div>
-                        <div class="gallery-meta">Oil on Canvas • 80cm × 60cm • 2025</div>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <!-- <img src="karya-5.jpg" alt="Refleksi Diri"> -->
-                    </div>
-                    <div class="gallery-info">
-                        <div class="gallery-title">Refleksi Diri dalam Karya</div>
-                        <div class="gallery-meta">Digital Collage • Eksperimental • 2026</div>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <!-- <img src="karya-6.jpg" alt="Seri Pohon Kehidupan"> -->
-                    </div>
-                    <div class="gallery-info">
-                        <div class="gallery-title">Tree of Life Series</div>
-                        <div class="gallery-meta">Multi Media • Koleksi Khusus • 2026</div>
-                    </div>
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">Testimonials</h2>
+        </div>
+        <div class="content-box">
+            <div class="testimonial">
+                <p class="quote-text">
+                    "Karya Beda Sudiman memiliki kedalaman spiritual yang luar biasa. 
+                    Setiap goresan kuasnya menceritakan kisah yang menyentuh jiwa."
+                </p>
+                <p class="quote-author">— Kurator Seni, Galeri Nasional Jakarta</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote-text">
+                    "Seorang seniman multidisiplin yang langka. Tidak hanya mahir melukis, 
+                    tetapi juga mampu menyampaikan cerita melalui patung dan musik."
+                </p>
+                <p class="quote-author">— Kolektor Seni, Singapore</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ART SHOP SECTION -->
+    <section id="shop">
+        <div class="section-header">
+            <h2 class="section-title">Art Shop</h2>
+            <p style="color:var(--text-secondary)">Karya-karya yang tersedia untuk dikoleksi</p>
+        </div>
+        <div class="shop-grid">
+            <div class="gallery-item">
+                <div class="gallery-image"><span>Available Work 1</span></div>
+                <div class="gallery-info">
+                    <span class="category-tag">Available</span>
+                    <div class="gallery-title">The Riverbank</div>
+                    <div class="gallery-meta">Oil on Canvas • Rp 15.000.000</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <h2 class="section-title">Hubungi Saya</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p>Tertarik dengan karya saya? Ingin berkolaborasi atau membeli karya? Jangan ragu untuk menghubungi saya.</p>
-                    <p>Saya terbuka untuk pameran, komisi khusus, dan diskusi seni.</p>
-                    
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/beda.sudiman/" target="_blank" class="social-link">
-                            <span>📘</span> Facebook
-                        </a>
-                        <a href="https://www.instagram.com/bedasudiman/" target="_blank" class="social-link">
-                            <span>📸</span> Instagram
-                        </a>
-                        <a href="https://www.threads.com/@bedasudiman" target="_blank" class="social-link">
-                            <span>🧵</span> Threads
-                        </a>
-                    </div>
-                </div>
-                
-                <form class="contact-form">
-                    <input type="text" placeholder="Nama Anda *" required>
-                    <input type="email" placeholder="Email Anda *" required>
-                    <input type="text" placeholder="Subjek">
-                    <textarea placeholder="Pesan Anda *" required></textarea>
-                    <button type="submit" class="submit-btn">Kirim Pesan</button>
-                </form>
-            </div>
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="section-header">
+            <h2 class="section-title">About</h2>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Beda Sudiman. All rights reserved.</p>
-            <p style="margin-top: 8px; font-size: 0.9rem; opacity: 0.8;">
-                Portofolio ini dapat diakses di: <strong>bedasudiman.art</strong> atau cari "Beda Sudiman"
+        <div class="content-box">
+            <div class="artist-photo"><span>📷 Artist Photo - Ganti dengan foto Bapak</span></div>
+            <p class="bio-text">
+                Beda Sudiman adalah seniman visual multidisiplin dari Bekasi, Indonesia. 
+                Lulusan Sekolah Seni Rupa Indonesia (SSRI) Yogyakarta, beliau menekuni berbagai 
+                medium seni mulai dari lukisan cat minyak, patung, hingga musik.
+            </p>
+            <p class="bio-text">
+                Karya-karyanya banyak terinspirasi dari alam, spiritualitas, dan kehidupan 
+                sehari-hari masyarakat Indonesia. Setiap karya merupakan refleksi dari perjalanan 
+                batin dan pencarian makna dalam kehidupan.
             </p>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        // Smooth scroll untuk navigasi
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Highlight menu aktif saat scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
+    <!-- CONTACT SECTION (Jane Hindmarch Style) -->
+    <section id="contact">
+        <div class="contact-wrapper">
+            <h2 class="section-title">Contact</h2>
+            <p class="contact-intro">
+                Tertarik dengan karya saya? Ingin memesan karya atau berkolaborasi? 
+                Silakan hubungi saya melalui form di bawah ini.
+            </p>
             
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (pageYOffset >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
+            <form class="contact-form" onsubmit="sendContact(event)">
+                <div class="form-row">
+                    <label>Name *</label>
+                    <input type="text" required placeholder="Your full name">
+                </div>
+                <div class="form-row">
+                    <label>Email *</label>
+                    <input type="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-row">
+                    <label>Subject</label>
+                    <input type="text" placeholder="Inquiry about artwork">
+                </div>
+                <div class="form-row">
+                    <label>Message *</label>
+                    <textarea required placeholder="Tell me about your inquiry..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
             
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
+            <div class="contact-details">
+                <div class="contact-item"><strong>Email:</strong> bedasudiman@email.com</div>
+                <div class="contact-item"><strong>Location:</strong> Bekasi, West Java, Indonesia</div>
+                <div class="contact-item"><strong>Instagram:</strong> @bedasudiman</div>
+            </div>
+        </div>
+    </section>
 
-        // Form submission (demo)
-        document.querySelector('.contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Terima kasih! Pesan Anda telah terkirim. Saya akan menghubungi Anda segera.');
-            e.target.reset();
-        });
-    </script>
+</div>
+
+<script>
+// ===== INTRO TRANSITION =====
+function enterWebsite() {
+    document.getElementById('intro').classList.add('hide');
+    setTimeout(() => {
+        document.getElementById('loader').classList.add('show');
+    }, 600);
+    setTimeout(() => {
+        document.getElementById('loader').classList.remove('show');
+        document.getElementById('intro').style.display = 'none';
+        document.getElementById('mainSite').style.display = 'block';
+        initWebsite();
+        window.scrollTo(0, 0);
+    }, 1300);
+}
+
+// ===== WEBSITE INIT =====
+function initWebsite() {
+    // Setup dropdown events
+    const dropdown = document.getElementById('galleryDropdown');
+    let closeTimer;
+    
+    dropdown.addEventListener('mouseenter', () => {
+        clearTimeout(closeTimer);
+        if (window.innerWidth > 768) dropdown.classList.add('open');
+    });
+    
+    dropdown.addEventListener('mouseleave', () => {
+        if (window.innerWidth > 768) {
+            closeTimer = setTimeout(() => dropdown.classList.remove('open'), 150);
+        }
+    });
+    
+    // Close dropdown when clicking outside (mobile)
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('mobile-open');
+        }
+    });
+    
+    // Load default gallery
+    showGallery('painting');
+}
+
+// ===== NAVIGATION =====
+function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(id);
+    if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+    closeDropdown();
+}
+
+// ===== DROPDOWN =====
+function toggleDropdown(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const dd = document.getElementById('galleryDropdown');
+    
+    if (window.innerWidth <= 768) {
+        dd.classList.toggle('mobile-open');
+    } else {
+        dd.classList.toggle('open');
+    }
+}
+
+function closeDropdown() {
+    document.getElementById('galleryDropdown').classList.remove('open', 'mobile-open');
+}
+
+// ===== GALLERY =====
+function showGallery(category) {
+    showSection('gallery');
+    closeDropdown();
+    
+    const titles = {
+        available: 'Available Work',
+        painting: 'Painting',
+        drawing: 'Drawing',
+        exhibition: 'Exhibitions'
+    };
+    document.getElementById('gallery-category').textContent = titles[category] || 'All Works';
+    renderGallery(category);
+}
+
+function renderGallery(cat) {
+    const data = {
+        painting: [
+            {t:'The Growing on the Riverbank', m:'Oil on Canvas', y:'2026', s:'100×80cm'},
+            {t:'Dancing Trees of Sumba', m:'Acrylic on Canvas', y:'2025', s:'80×60cm'},
+            {t:'Tree of Life', m:'Oil on Canvas', y:'2024', s:'120×90cm'}
+        ],
+        drawing: [
+            {t:'Sketch of Nature', m:'Charcoal on Paper', y:'2025', s:'40×30cm'},
+            {t:'Portrait Study', m:'Pencil', y:'2024', s:'30×25cm'}
+        ],
+        available: [
+            {t:'The Riverbank', m:'Oil on Canvas', y:'2026', s:'100×80cm', p:'Rp 15.000.000'},
+            {t:'Forest Whisper', m:'Acrylic', y:'2025', s:'70×50cm', p:'Rp 8.500.000'}
+        ],
+        exhibition: [
+            {t:'Jakarta Art Fair 2024', m:'Exhibition', y:'2024', l:'Galeri Nasional'},
+            {t:'Bekasi Art Showcase', m:'Event', y:'2023', l:'Bekasi Cultural Center'}
+        ]
+    };
+    
+    const items = data[cat] || data.painting;
+    let html = '';
+    
+    items.forEach(a => {
+        html += `
+        <div class="gallery-item">
+            <div class="gallery-image"><span>${a.t}</span></div>
+            <div class="gallery-info">
+                ${a.p ? `<span class="category-tag" style="background:#2e7d32">${a.p}</span>` : ''}
+                <div class="gallery-title">${a.t}</div>
+                <div class="gallery-meta">${a.m}${a.s ? ' • ' + a.s : ''}${a.y ? ' • ' + a.y : ''}${a.l ? ' • ' + a.l : ''}</div>
+            </div>
+        </div>`;
+    });
+    
+    document.getElementById('galleryContent').innerHTML = html;
+}
+
+// ===== CONTACT FORM =====
+function sendContact(e) {
+    e.preventDefault();
+    alert('✅ Terima kasih! Pesan Anda telah terkirim.\n\nSaya akan menghubungi Anda segera melalui email.');
+    e.target.reset();
+}
+
+// ===== START =====
+window.addEventListener('load', () => {
+    // Auto-show intro, wait for Enter click
+});
+</script>
+
 </body>
 </html>
