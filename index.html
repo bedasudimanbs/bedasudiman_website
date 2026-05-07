@@ -446,39 +446,87 @@
     </section>
 
     <!-- CONTACT SECTION (Jane Hindmarch Style) -->
-    <section id="contact">
-        <div class="contact-wrapper">
-            <h2 class="section-title">Contact</h2>
-            <p class="contact-intro">
-                Tertarik dengan karya saya? Ingin memesan karya atau berkolaborasi? 
-                Silakan hubungi saya melalui form di bawah ini.
+   <!-- CONTACT SECTION -->
+<section id="contact">
+    <div class="contact-wrapper">
+        <h2 class="section-title">Contact</h2>
+        <p class="contact-intro">
+            Tertarik dengan karya saya? Silakan hubungi saya langsung 
+            untuk pertanyaan, pemesanan karya, atau kolaborasi.
+        </p>
+        
+        <!-- WhatsApp Button -->
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="https://wa.me/081572993493?text=Halo%20Pak%20Beda,%20saya%20tertarik%20dengan%20karya%20Anda.%20Mohon%20informasi%20lebih%20lanjut." 
+               target="_blank"
+               style="display: inline-block; background: #25D366; color: white; 
+                      padding: 1rem 3rem; border-radius: 6px; text-decoration: none;
+                      font-weight: 600; font-size: 1.05rem; letter-spacing: 1px;
+                      box-shadow: 0 4px 15px rgba(37,211,102,0.3); 
+                      transition: all 0.3s; margin-bottom: 1.5rem;">
+               💬 Chat via WhatsApp
+            </a>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                ⚡ Respons cepat • Langsung ke pelukis
             </p>
-            
-            <form class="contact-form" onsubmit="sendContact(event)">
-                <div class="form-row">
-                    <label>Name *</label>
-                    <input type="text" required placeholder="Your full name">
-                </div>
-                <div class="form-row">
-                    <label>Email *</label>
-                    <input type="email" required placeholder="your.email@example.com">
-                </div>
-                <div class="form-row">
-                    <label>Subject</label>
-                    <input type="text" placeholder="Inquiry about artwork">
-                </div>
-                <div class="form-row">
-                    <label>Message *</label>
-                    <textarea required placeholder="Tell me about your inquiry..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-            
-            <div class="contact-details">
-                <div class="contact-item"><strong>Email:</strong> bedasudiman@email.com</div>
-                <div class="contact-item"><strong>Location:</strong> Bekasi, West Java, Indonesia</div>
-                <div class="contact-item"><strong>Instagram:</strong> @bedasudiman</div>
+        </div>
+        
+        <!-- Email Button -->
+        <div style="text-align: center; margin: 2.5rem 0;">
+            <a href="mailto:bedasudimanbs@gmail.com?subject=Inquiry%20-%20Beda%20Sudiman%20Portfolio" 
+               style="display: inline-block; background: var(--bg-secondary); 
+                      color: var(--text-primary); padding: 1rem 3rem; 
+                      border-radius: 6px; text-decoration: none;
+                      font-weight: 600; font-size: 1rem; letter-spacing: 1px;
+                      border: 1px solid var(--border);
+                      transition: all 0.3s;">
+               📧 Kirim Email
+            </a>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="contact-details" style="margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border);">
+            <div class="contact-item" style="margin: 1rem 0; color: var(--text-secondary);">
+                <strong style="color: var(--text-primary);">Email:</strong> bedasudiman@email.com
             </div>
+            <div class="contact-item" style="margin: 1rem 0; color: var(--text-secondary);">
+                <strong style="color: var(--text-primary);">Location:</strong> Bekasi, West Java, Indonesia
+            </div>
+            <div class="contact-item" style="margin: 1rem 0; color: var(--text-secondary);">
+                <strong style="color: var(--text-primary);">Instagram:</strong> @bedasudiman
+            </div>
+        </div>
+        
+        <!-- 
+        =======================================
+        FORM KONTAK (DISEMBUNYIKAN - COMMENT)
+        =======================================
+        
+        <form class="contact-form" onsubmit="sendContact(event)">
+            <div class="form-row">
+                <label>Name *</label>
+                <input type="text" name="name" required placeholder="Your full name">
+            </div>
+            <div class="form-row">
+                <label>Email *</label>
+                <input type="email" name="email" required placeholder="your.email@example.com">
+            </div>
+            <div class="form-row">
+                <label>Subject</label>
+                <input type="text" name="subject" placeholder="Inquiry about artwork">
+            </div>
+            <div class="form-row">
+                <label>Message *</label>
+                <textarea name="message" required placeholder="Tell me about your inquiry..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+        
+        -->
+    </div>
+</section>
+        
+        -->
         </div>
     </section>
 
